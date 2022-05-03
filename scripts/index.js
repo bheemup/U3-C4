@@ -6,7 +6,7 @@ document.getElementById("navbar").innerHTML=navbar();
 
  let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=in`
  
-  fetch(url)
+  fetch(url) 
   .then(function(res){
       return res.json();
   })
@@ -47,25 +47,21 @@ document.getElementById("navbar").innerHTML=navbar();
       })
   }
 
-  document.getElementById("in").addEventListener("click",function(){
-     
-    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=in`
- 
-  fetch(url)
-  .then(function(res){
-      return res.json();
-  })
-  .then(function(res){
-      console.log(res.articles);
-      append(res.articles)
-  })
-  .catch(function(err){
-      console.log(err);
-  })
+  var sidebar =document.getElementById("sidebar").children;
+ console.log(sidebar);
 
-  })
-  document.getElementById("us").addEventListener("click",function(){
-    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=us`
+  function csearch(){
+      countrycontent(this.id);
+      console.log(this.id);
+  }
+
+  for(let x of sidebar){
+      x.addEventListener("click",csearch);
+    //   console.log(x)
+  }
+
+  let countrycontent=(id)=>{
+    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=${id}`
  
     fetch(url)
     .then(function(res){
@@ -78,57 +74,9 @@ document.getElementById("navbar").innerHTML=navbar();
     .catch(function(err){
         console.log(err);
     })
+  }
 
-})
-document.getElementById("ch").addEventListener("click",function(){
-    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=ch`
- 
-    fetch(url)
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(res){
-        console.log(res.articles);
-        append(res.articles)
-    })
-    .catch(function(err){
-        console.log(err);
-    })
 
-})
-document.getElementById("uk").addEventListener("click",function(){
-    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=uk`
- 
-    fetch(url)
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(res){
-        console.log(res.articles);
-        append(res.articles)
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-
-})
-document.getElementById("nz").addEventListener("click",function(){
-    let url=  `https://masai-mock-api.herokuapp.com/news/top-headlines?country=nz`
- 
-    fetch(url)
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(res){
-        console.log(res.articles);
-        append(res.articles)
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-   
-
-})
 
 document.getElementById("search_input").addEventListener("keypress",function(e){
    if(e.key==="Enter"){
